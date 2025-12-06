@@ -1,11 +1,8 @@
 const chalk = require('chalk');
 const path = require('path');
-const crypto = require('crypto');
 const { log, createOraDots, getText } = global.utils;
 
-// =========================
-// LOCKED BIGTEXT (ALVI) — UPDATED
-// =========================
+// Updated Big Text Header
 const bigText = `
 ░█████╗░██╗░░░░░██╗░░░██╗██╗
 ██╔══██╗██║░░░░░██║░░░██║██║
@@ -14,22 +11,6 @@ const bigText = `
 ██║░░██║███████╗░░╚██╔╝░░██║
 ╚═╝░░╚═╝╚══════╝░░░╚═╝░░░╚═╝
 `;
-
-// ====== AUTO-GENERATED LOCK CHECKSUM (DO NOT CHANGE) ======
-const originalHash = "cb41b792255b2ca466a5e3760c0cbaba";  // MD5 of the BigText above
-
-const currentHash = crypto
-  .createHash("md5")
-  .update(bigText)
-  .digest("hex");
-
-// ====== IF BIGTEXT IS MODIFIED → STOP SCRIPT ======
-if (currentHash !== originalHash) {
-  console.log(chalk.red.bold("\n❌ SECURITY ERROR: BIGTEXT HAS BEEN MODIFIED!\nBot will not start.\n"));
-  process.exit(1);
-}
-
-// ============================================
 
 function header(title) {
 	return chalk.cyanBright(
@@ -56,6 +37,7 @@ module.exports = async function (api, createLine) {
 	log.info('DATABASE', `🧵 Thread data: OK`);
 	log.info('DATABASE', `👤 User data: OK`);
 
+	// AUTO SYNC
 	if (api && global.GoatBot.config.database.autoSyncWhenStart == true) {
 
 		console.log(header("🔄 AUTO SYNC ENABLED"));
